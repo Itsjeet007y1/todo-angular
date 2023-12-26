@@ -4,3 +4,11 @@
     You can manage your todos here... <a routerLink="/todos">here</a>
 </div>
 
+<div>
+    Click here to get customized message: 
+    <button (click)="getMessage()" class="btn btn-success">Get Message</button>
+    <br><br>
+    <span>{{ greetMessage }}</span>
+    <span style="color: red;">{{ errorMessage }}</span>
+</div>
+
