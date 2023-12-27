@@ -47,4 +47,18 @@ export class LoginComponent {
     )
   }
 
+  handleJWTAuthLogin() {
+    this.basicAuthenticateService.executeJWTAuthenticationService(this.username, this.password).subscribe(
+      data => {
+        console.log(data)
+        this.router.navigate(['welcome', this.username])
+        this.invalidLogin=false
+      },
+      error => {
+        this.invalidLogin = true;
+        console.log(error)
+      }
+    )
+  }
+
 }
