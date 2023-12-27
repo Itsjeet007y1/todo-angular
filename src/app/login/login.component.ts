@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
+import { BasicAuthenticationService } from '../service/basic-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +10,15 @@ import { HardcodedAuthenticationService } from '../service/hardcoded-authenticat
 })
 export class LoginComponent {
 
-  constructor(public router: Router, public authenticateService : HardcodedAuthenticationService) {
+  constructor(public router: Router,
+    public authenticateService : HardcodedAuthenticationService,
+    public basicAuthenticateService: BasicAuthenticationService
+    ) {
     
   }
 
-  username = "jitendra";
-  password = "pass123";
+  username = "";
+  password = "";
 
   invalidLogin = false;
 
@@ -29,6 +33,18 @@ export class LoginComponent {
     }
   }
 
-  
+  handleBasicAuthLogin() {
+    this.basicAuthenticateService.executeAuthenticationService(this.username, this.password).subscribe(
+      data => {
+        console.log(data)
+        this.router.navigate(['welcome', this.username])
+        this.invalidLogin=false
+      },
+      error => {
+        this.invalidLogin = true;
+        console.log(error)
+      }
+    )
+  }
 
 }
