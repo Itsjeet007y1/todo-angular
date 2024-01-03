@@ -23,11 +23,11 @@ constructor(
     this.id = this.route.snapshot.params['id'];
     this.todo = new Todo(this.id, '', false, new Date());
     if(this.id != -1) {
-        this.todoService.retrieveTodo('Jitendra', this.id).subscribe(
+        this.todoService.retrieveTodo('jitendra', this.id).subscribe(
         response => this.todo = response
       );
     }
-  console.log(this.todo)
+  console.log(this.todo) 
   }
 
 saveToDo() {
